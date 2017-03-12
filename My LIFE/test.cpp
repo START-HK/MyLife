@@ -1,5 +1,6 @@
 #include"DxLib.h"
 #include"Cat.h"
+#include"Player1.h"
 
 #define Window_X 1280
 #define Window_Y 720
@@ -17,20 +18,21 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPSTR ipCmdLine
 		return-1; 
 	}
 
-	Cat cat(Window_X/2,Window_Y/2);
+	SetDrawScreen(DX_SCREEN_BACK);
 
-	int monster_image[12];
-	LoadDivGraph("res / monster.png", 12, 4, 3, 64, 64, monster_image);
-	
+	Player1 player(Window_X / 2, Window_Y / 2);
+
+	player.Player1_Image[12];
+	LoadDivGraph("res/monster.png", 12, 3, 4, 64, 64, player.Player1_Image);
+
 	while (ProcessMessage() != -1)
 	{
 		ClearDrawScreen();
 
-		cat.Move();
 
-		//LoadGraphScreen(cat.Get_X(), cat.Get_Y(), "res/cat.jpg",TRUE);
+		player.Move();
 
-		DrawGraph(0, 0, monster_image[2], TRUE);
+		player.Draw();
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE) != 0)
 			break;
@@ -39,10 +41,6 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPSTR ipCmdLine
 		ScreenFlip();
 		
 	}
-
-	//DrawPixel(100, 240, GetColor(0, 255, 255)); //指定に位置に指定の色で点を表示
-
-	//WaitKey(); //何かキーを打つまで待機
 
 	DxLib_End(); //DXライブラリの終了
 
