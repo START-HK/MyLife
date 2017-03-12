@@ -18,6 +18,9 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPSTR ipCmdLine
 	}
 
 	Cat cat(Window_X/2,Window_Y/2);
+
+	int monster_image[12];
+	LoadDivGraph("res / monster.png", 12, 4, 3, 64, 64, monster_image);
 	
 	while (ProcessMessage() != -1)
 	{
@@ -25,7 +28,9 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPSTR ipCmdLine
 
 		cat.Move();
 
-		LoadGraphScreen(cat.Get_X(), cat.Get_Y(), "res/cat.jpg",TRUE);
+		//LoadGraphScreen(cat.Get_X(), cat.Get_Y(), "res/cat.jpg",TRUE);
+
+		DrawGraph(0, 0, monster_image[2], TRUE);
 
 		if (CheckHitKey(KEY_INPUT_ESCAPE) != 0)
 			break;
