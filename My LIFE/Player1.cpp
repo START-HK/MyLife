@@ -2,14 +2,16 @@
 #include"DxLib.h"
 
 
-Player1::Player1(int x,int y)
+Player1::Player1(int x,int y,int w,int h)
 {
 	m_x = x;
 	m_y = y;
+	m_w = w;
+	m_h = h;
 
 	ic = 0;
 	fc = 0;
-	i = 0;
+	i = 0;  
 	state = Player1::State::Down;
 }
 
@@ -33,6 +35,16 @@ int Player1::Get_X()
 int Player1::Get_Y()
 {
 	return m_y;
+}
+
+int Player1::Get_W()
+{
+	return m_w;
+}
+
+int Player1::Get_H()
+{
+	return m_h;
 }
 
 void Player1::Move()
@@ -117,6 +129,10 @@ void Player1::Draw()
 	default:
 		break;
 	}
-	DrawGraph(Get_X(), Get_Y(), Player1_Image[ic], TRUE);
+
+	int x = Get_X() - (Get_W() / 2);
+	int y = Get_Y() - (Get_H() / 2);
+
+	DrawGraph(x, y, Player1_Image[ic], TRUE);
 
 }
